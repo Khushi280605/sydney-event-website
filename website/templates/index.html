@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upcoming Sydney Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Upcoming Sydney Events</h1>
+    <div class="events-container">
+        {% for event in events %}
+        <div class="event-card">
+            <h2>{{ event.title }}</h2>
+            <p><strong>Date:</strong> {{ event.date }}</p>
+            <p><strong>Location:</strong> {{ event.location }}</p>
+            <button class="btn" onclick="getTickets('{{ event.link }}')">Get Tickets</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function getTickets(link) {
+            const email = prompt("Please enter your email to proceed:");
+            if (email) {
+                window.open(link, "_blank");
+            } else {
+                alert("Email is required to get your tickets!");
+            }
+        }
+    </script>
+</body>
+</html>
